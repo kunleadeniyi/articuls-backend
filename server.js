@@ -7,6 +7,8 @@ const cors = require('cors');
 require('dotenv').config()
 
 const PORT = process.env.PORT || 3000;
+const path = require('path');
+const publicPath = path.join(__dirname, '..', 'public');
 
 // DB stuff
 const mongoose = require('mongoose');
@@ -28,6 +30,9 @@ app.use(bodyParser.json());
 
 // CORS
 app.use(cors())
+
+// load
+app.use(express.static(publicPath));
 
 // Mount your existing apiRouter below at the '/api' path.
 const apiRouter = require('./api/api');
